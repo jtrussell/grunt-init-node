@@ -1,36 +1,23 @@
+/*global describe, it */
 'use strict';
 
-var {%= js_test_safe_name %} = require('../lib/{%= name %}.js');
+var {%= js_test_safe_name %} = require('../lib/{%= name %}.js')
+  , expect = require('chai').expect;
 
 /*
-  ======== A Handy Little Nodeunit Reference ========
-  https://github.com/caolan/nodeunit
+ * http://chaijs.com/api/bdd/
+ */
 
-  Test methods:
-    test.expect(numAssertions)
-    test.done()
-  Test assertions:
-    test.ok(value, [message])
-    test.equal(actual, expected, [message])
-    test.notEqual(actual, expected, [message])
-    test.deepEqual(actual, expected, [message])
-    test.notDeepEqual(actual, expected, [message])
-    test.strictEqual(actual, expected, [message])
-    test.notStrictEqual(actual, expected, [message])
-    test.throws(block, [error], [message])
-    test.doesNotThrow(block, [error], [message])
-    test.ifError(value)
-*/
-
-exports['awesome'] = {
-  setUp: function(done) {
+describe('awesome', function() {
+  
+  beforEach(function() {
     // setup here
-    done();
-  },
-  'no args': function(test) {
-    test.expect(1);
-    // tests here
-    test.equal({%= js_test_safe_name %}.awesome(), 'awesome', 'should be awesome.');
-    test.done();
-  },
-};
+  });
+
+  describe('no args', function() {
+    it('should be awesome', function() {
+      expect({%= js_test_safe_name %}.awesome()).to.be('awesome');
+    });
+  });
+
+});

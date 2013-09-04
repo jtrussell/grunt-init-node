@@ -2,10 +2,9 @@
 
 module.exports = function(grunt) {
 
-  // Project configuration.
   grunt.initConfig({
-    nodeunit: {
-      files: ['test/**/*_test.js'],
+    simplemocha: {
+      files: ['test/**/*_test.js']
     },
     jshint: {
       options: {
@@ -19,7 +18,7 @@ module.exports = function(grunt) {
       },
       test: {
         src: ['test/**/*.js']
-      },
+      }
     },
     watch: {
       gruntfile: {
@@ -28,21 +27,19 @@ module.exports = function(grunt) {
       },
       lib: {
         files: '<%= jshint.lib.src %>',
-        tasks: ['jshint:lib', 'nodeunit']
+        tasks: ['jshint:lib', 'simplemocha']
       },
       test: {
         files: '<%= jshint.test.src %>',
-        tasks: ['jshint:test', 'nodeunit']
-      },
-    },
+        tasks: ['jshint:test', 'simplemocha']
+      }
+    }
   });
 
-  // These plugins provide necessary tasks.
-  grunt.loadNpmTasks('grunt-contrib-nodeunit');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-simple-mocha');
 
-  // Default task.
-  grunt.registerTask('default', ['jshint', 'nodeunit']);
+  grunt.registerTask('default', ['jshint', 'simplemocha']);
 
 };
